@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import plotly.express
+import plotly.express as px
 
 st.set_page_config(layout="wide")
 
@@ -15,3 +15,6 @@ max_price = st.sidebar.slider("Price Range", price_min, price_max, price_max)
 # show filtered top100 books by price
 df_books = df_top100_books[df_top100_books["book price"] <= max_price]
 df_books
+
+fig = px.bar(df_books["year of publication"].value_counts())
+st.plotly_chart(fig)
