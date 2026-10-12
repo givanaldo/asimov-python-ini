@@ -16,5 +16,9 @@ max_price = st.sidebar.slider("Price Range", price_min, price_max, price_max)
 df_books = df_top100_books[df_top100_books["book price"] <= max_price]
 df_books
 
-fig = px.bar(df_books["year of publication"].value_counts())
-st.plotly_chart(fig)
+# plot graphs
+col1, col2 = st.columns(2)
+fig1 = px.bar(df_books["year of publication"].value_counts())
+col1.plotly_chart(fig1)
+fig2 = px.histogram(df_books["book price"])
+col2.plotly_chart(fig2)
